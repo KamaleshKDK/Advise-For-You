@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advice</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="card">
+            <h3>Advice</h3>
+            <p class="advice"></p>
+            <br>
+            <button id="get-advice">Get Some Advice</button>
+        </div>
+
+    </div>
+
+    <script>
+        let advice = document.querySelector(".advice");
+        
+        function getAdvice() {
+            fetch("https://api.adviceslip.com/advice")
+                .then(res => res.json())
+                .then(res => {
+                    advice.innerHTML = res.slip.advice;
+                })
+                .catch(err => console.error(err));
+        }
+
+        document.getElementById("get-advice").addEventListener("click", getAdvice);
+        getAdvice();
+    </script>
+</body>
+
+</html>
